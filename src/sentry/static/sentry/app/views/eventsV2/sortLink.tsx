@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'react-emotion';
 import {Location} from 'history';
 
@@ -7,20 +6,13 @@ import InlineSvg from 'app/components/inlineSvg';
 import Link from 'app/components/links/link';
 
 type Props = {
-  title: string;
+  title: React.ReactNode;
   sortKey: string;
   defaultSort: string;
   location: Location;
 };
 
 class SortLink extends React.Component<Props> {
-  static propTypes = {
-    title: PropTypes.string.isRequired,
-    sortKey: PropTypes.string.isRequired,
-    defaultSort: PropTypes.string.isRequired,
-    location: PropTypes.object.isRequired,
-  };
-
   getCurrentSort(): string {
     const {defaultSort, location} = this.props;
     return typeof location.query.sort === 'string' ? location.query.sort : defaultSort;

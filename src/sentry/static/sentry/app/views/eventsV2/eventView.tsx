@@ -27,8 +27,8 @@ type QueryStringField = [
 ];
 
 type Field = {
+  title: React.ReactNode;
   field: string;
-  title: string;
   // TODO: implement later
   // width: number;
 };

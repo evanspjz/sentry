@@ -31,13 +31,13 @@ type DataPayload = {
   meta: MetaType;
 };
 
-type Props = {
+type TableProps = {
   api: Client;
   location: Location;
   organization: Organization;
 };
 
-type State = {
+type TableState = {
   eventView: EventView;
   loading: boolean;
   error: null | string;
@@ -45,11 +45,8 @@ type State = {
   dataPayload: DataPayload | null | undefined;
 };
 
-/**
- * Container element that fetches events and handles pagination
- */
-class Table extends React.PureComponent<Props, State> {
-  state: State = {
+class Table extends React.PureComponent<TableProps, TableState> {
+  state: TableState = {
     eventView: EventView.fromLocation(this.props.location),
     loading: true,
     error: null,
@@ -57,7 +54,7 @@ class Table extends React.PureComponent<Props, State> {
     dataPayload: null,
   };
 
-  static getDerivedStateFromProps(props: Props, state: State): State {
+  static getDerivedStateFromProps(props: TableProps, state: TableState): TableState {
     return {
       ...state,
       eventView: EventView.fromLocation(props.location),
@@ -359,4 +356,4 @@ const Container = styled('div')`
   overflow: hidden;
 `;
 
-export default withApi<Props>(Table);
+export default withApi<TableProps>(Table);
